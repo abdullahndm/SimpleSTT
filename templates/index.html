@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition in Python</title>
+    <link href="{{ url_for('static', filename='https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}" />
+
+	<!-- Latest compiled and minified Bootstrap CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') }}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>Percobaan Speech Recognition</h1>
+    <h3>Langkah 1 - Rekam suara anda</h3>
+
+    <div style="max-width: 28em;">
+		<p>Konversi audio ke file tipe .wav:</p>
+
+		<select id="encodingTypeSelect">
+		  <option value="wav">Waveform Audio (.wav)</option>
+		</select>
+		<div id="controls">
+			<button id="recordButton">Record</button>
+			<button id="stopButton" disabled>Stop</button>
+		</div>
+		<div id="formats"></div>
+		<pre>Log</pre>
+		<pre id="log"></pre>
+        <br>
+        <h3>Langkah 2 - Unduh hasil rekaman </h3> 
+		<ol id="recordingsList"></ol>
+    </div>
+
+    <h3>Langkah 3 - Upload file .wav anda</h3> 
+
+    <div id="speechContainer">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+        </form>
+    </div>
+
+        <h3>Langkah 4 - Konversi Speech ke Teks </h3> 
+        <input type="submit" id="submitButton" value="Transcribe"/>
+
+        {% if transcript != "" %}
+            <div id="speechTranscriptContainer">
+                <h1>Hasil</h1>
+                <p id="speechText">{{ transcript }}</p>
+            </div>
+        {% endif %}
+
+    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+    <script src="{{ url_for('static', filename='js/WebAudioRecorder.min.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}" ></script>
+</body>
+</html>
