@@ -37,12 +37,13 @@
     <div id="speechContainer">
         <form method="post" enctype="multipart/form-data">
             <input type="file" name="file"/>
-        </form>
+        
     </div>
 
         <h3>Langkah 4 - Konversi Speech ke Teks </h3> 
         <input type="submit" id="submitButton" value="Transcribe"/>
-
+    </form>
+    
         {% if transcript != "" %}
             <div id="speechTranscriptContainer">
                 <h1>Hasil</h1>
